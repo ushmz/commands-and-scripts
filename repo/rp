@@ -1,0 +1,76 @@
+#!/bin/sh
+function usage {
+cat <<EOM
+    Usage: $(basename "$0") [OPTION]... [target]
+        -h Display help
+        -r Set root directory
+        -n Repository name
+EOM
+    
+    exit 2
+}
+
+while true; do
+    if [ -z "$1" ]; then
+        usage
+        exit 2
+    fi
+
+    case $1 in 
+        '-l' | '-list')
+            cd ${HOME}/rabhare6it/
+            ls -d
+            exit 2
+            ;;
+        '-r')
+            export REPOSITORIES_ROOT="${OPTARG}"
+            export "repo='cd $REPOSITORIES_ROOT'"
+            exit 2
+            ;;
+        '-h'|'--help')
+            usage
+            exit 2
+            ;;
+        '-*')
+            echo "Invalid option."
+            usage
+            exit 2
+            ;;
+        *)
+            if test "${REPOSITORIES_ROOT}" != ""; then
+                cd "$REPOSITORIES_ROOT/$1"
+                if [ -e *.code-workspace ]; then
+                    code $1.code-workspace
+                else
+                    code .
+                fi
+            else
+                cd "$HOME/rabhare6it/$1"
+                if [ -e *.code-workspace ]; then
+                    code $1.code-workspace
+                else
+                    code .
+                fi
+            fi
+            exit 2
+            ;;
+    esac
+done
+
+# while getopts ":h:n:r" optKey; do
+#     case "$optKey" in
+#         n)
+#             if test "${REPOSITORIES_ROOT}" != ""; then
+#                 cd "${REPOSITORIES_ROOT}/${OPTARG}" && code .
+#             else
+#                 cd "/Users/yusuk/rabhare6it/${OPTARG}" && code .
+#             fi            
+#             ;;
+#         r)
+#             export REPOSITORIES_ROOT="${OPTARG}"
+#             ;;
+#         '-h'|'--help'|* )
+#             usage
+#             ;;
+#     esac
+# done

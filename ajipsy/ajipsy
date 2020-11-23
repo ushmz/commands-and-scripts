@@ -1,0 +1,43 @@
+#!/bin/sh
+endpoint='https://slack.com/api/users.profile.set'
+
+function usage {
+cat <<EOM
+    Usage: $(basename "$0") [OPTION]
+        room2525 Set Slack Status 'Room2525'
+        room2719 Set Slack Status 'Room2719'
+        home Set SLack Status 'Home'
+        -h Display help
+EOM
+}
+
+export $(cat .env | grep -v ^\# | xargs);
+
+while true; do
+    case $1 in
+        'room2719')
+            profile='\{"status_text":"Room2719","status_emoji":":school:"\}'
+            curl -X POST ${endpoint}?token=${SLACK_ACCESS_TOKEN}\&profile=${profile}
+            exit 2
+            ;;
+        'room2525')
+            profile='\{"status_text":"Room2525","status_emoji":":school:"\}'
+            curl -X POST ${endpoint}?token=${SLACK_ACCESS_TOKEN}\&profile=${profile}
+            exit 2
+            ;;
+        'home')
+            profile='\{"status_text":"Home","status_emoji":":house:"\}'
+            curl -X POST ${endpoint}?token=${SLACK_ACCESS_TOKEN}\&profile=${profile}
+            exit 2
+            ;;
+        '-h' | '--help')
+            usage
+            exit 2
+            ;;
+        *)
+            echo "Invalid option."
+            usage
+            exit 2
+	    ;;
+    esac
+done
