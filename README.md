@@ -27,6 +27,7 @@ Show help
 ```sh
 repo [-h|--help]
 ```
+---
 
 ### cmdnotif
 
@@ -41,6 +42,7 @@ export CMD_NOTIFY_SLACK_WEBHOOK_URL="{your slack workspace's webhook URL}"
 export CMD_NOTIFY_SLACK_USER_NAME="{slackID you'd like to notify(mention)}"  # NOT USERNAME
 source /path/to/cmdnotif
 ```
+---
 
 ### repo
 
@@ -65,16 +67,21 @@ Show help
 ```sh
 repo [-h|--help]
 ```
+---
 
 ### snitch
 
 Simple commands to tweet from CLI.
+
+---
 
 ## scripts
 
 ### brew_update
 
 Execute form `crontab` to keep upgraded all brew formulae.
+
+---
 
 ### overleaf_backup
 Execute from `crontab` to back up overleaf project with git.
