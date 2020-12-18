@@ -1,0 +1,7 @@
+echo '################################################################'
+figlet 'TYPO   m9(^Д^)'
+echo '################################################################\n'
+echo 'Holy sit, you ruined everything. Like everything you do'
+echo 'This typo is like your life.'
+echo 'Beginning a lot of things, left undone'
+echo 'And nobody loves you.\n'
