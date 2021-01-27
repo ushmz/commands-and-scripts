@@ -35,7 +35,7 @@ Notify you in slack when finish commands execution that takes long time.
 
 #### Usage
 
-Add below code to your `~/.zshrc` or `~/.bashrc`.
+Add below code to your `~/.zshrc` or something.
 
 ```shell
 export CMD_NOTIFY_SLACK_WEBHOOK_URL="{your slack workspace's webhook URL}"
