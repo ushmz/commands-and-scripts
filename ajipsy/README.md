@@ -4,10 +4,11 @@ Simple command to set Slack status.
 
 # Usage
 
-Set your slack OAuth access token in `.env` file.
+Set your slack OAuth access token and member ID in `.env` file.
 ```.env
 # Slack OAuth token
-SLACK_ACCESS_TOKEN=${YOUR_TOKEN}
+AJIPSY_ACCESS_TOKEN=${YOUR_TOKEN}
+AJIPSY_USERID=${YOUR_MEMBERID}
 ```
 
 ```sh
