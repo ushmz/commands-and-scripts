@@ -11,23 +11,21 @@ cat <<EOM
 EOM
 }
 
-export $(cat .env | grep -v ^\# | xargs);
-
 while true; do
     case $1 in
         'room2719')
             profile='\{"status_text":"Room2719","status_emoji":":school:"\}'
-            curl -X POST ${endpoint}?token=${SLACK_ACCESS_TOKEN}\&profile=${profile}
+            curl -X POST ${endpoint}?token=${AJIPSY_ACCESS_TOKEN}\&profile=${profile}\&user=${AJIPSY_USERID}
             exit 2
             ;;
         'room2525')
             profile='\{"status_text":"Room2525","status_emoji":":school:"\}'
-            curl -X POST ${endpoint}?token=${SLACK_ACCESS_TOKEN}\&profile=${profile}
+            curl -X POST ${endpoint}?token=${AJIPSY_ACCESS_TOKEN}\&profile=${profile}\&user=${AJIPSY_USERID}
             exit 2
             ;;
         'home')
             profile='\{"status_text":"Home","status_emoji":":house:"\}'
-            curl -X POST ${endpoint}?token=${SLACK_ACCESS_TOKEN}\&profile=${profile}
+            curl -X POST ${endpoint}?token=${AJIPSY_ACCESS_TOKEN}\&profile=${profile}\&user=${AJIPSY_USERID}
             exit 2
             ;;
         '-h' | '--help')
@@ -41,3 +39,4 @@ while true; do
 	    ;;
     esac
 done
+
