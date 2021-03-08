@@ -1,6 +1,7 @@
 # cmdnotif
 
 Notify you in slack when finish commands execution that takes long time.
+Rust version is [here](https://github.com/ushmz/hicaq).
 
 ## How to use
 
