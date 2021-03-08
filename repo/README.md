@@ -2,6 +2,8 @@
 
 Simple command to open project folder in VScode.
 
+\* Of course ghq + peco is better.
+
 # Usage
 
 Try opening folder in VScode.
