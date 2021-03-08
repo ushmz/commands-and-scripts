@@ -28,6 +28,11 @@ while true; do
             curl -X POST ${endpoint}?token=${AJIPSY_ACCESS_TOKEN}\&profile=${profile}\&user=${AJIPSY_USERID}
             exit 2
             ;;
+         'reset')
+            profile='\{"status_text":"","status_emoji":""\}'
+            curl -X POST ${endpoint}?token=${AJIPSY_ACCESS_TOKEN}\&profile=${profile}\&user=${AJIPSY_USERID}
+            exit 2
+            ;;
         '-h' | '--help')
             usage
             exit 2
