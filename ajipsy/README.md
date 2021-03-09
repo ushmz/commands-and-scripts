@@ -1,6 +1,6 @@
 # ajipsy 
 
-Simple command to set Slack status.
+Simple command to set Slack status. (rust version is [here](https://github.com/ushmz/ajipsy))
 
 # Usage
 
