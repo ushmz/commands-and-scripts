@@ -13,8 +13,19 @@ function notify_preexec {
 }
 
 function notify_precmd {
+	cmd=`echo $notif_prev_command | awk '{print $1}'`
+	if [[ $cmd =~ ^(go|uvicorn|gatsby)$ ]]; then
+		return
+	fi
+
   notif_status=$?
-  if [ -n "${CMD_NOTIFY_SLACK_WEBHOOK_URL+x}" ] && [ -n "${CMD_NOTIFY_SLACK_USER_NAME+x}" ] && [ $TTYIDLE -gt ${SLACK_NOTIF_THRESHOLD:-180} ] && [ $notif_status -ne 128 ] && [ $notif_status -ne 129 ] && [ $notif_status -ne 130 ] && [ $notif_status -ne 146 ]; then
+  if [ -n "${CMD_NOTIFY_SLACK_WEBHOOK_URL+x}" ]\
+	  && [ -n "${CMD_NOTIFY_SLACK_USER_NAME+x}" ]\
+	  && [ $TTYIDLE -gt ${SLACK_NOTIF_THRESHOLD:-180} ]\
+	  && [ $notif_status -ne 128 ]\
+	  && [ $notif_status -ne 129 ]\
+	  && [ $notif_status -ne 130 ]\
+	  && [ $notif_status -ne 146 ]; then
     notif_title=$([ $notif_status -eq 0 ] && echo "Command succeeded :ok_woman:" || echo "Command failed :no_good:")
     notif_color=$([ $notif_status -eq 0 ] && echo "good" || echo "danger")
     payload=`cat << EOS
