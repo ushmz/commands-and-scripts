@@ -1,4 +1,5 @@
 #!/bin/zsh
+
 if [ -z "${CMD_NOTIFY_SLACK_WEBHOOK_URL+x}" ]; then
   echo "CMD_NOTIFY_SLACK_WEBHOOK_URL is empty !!!"
 fi
@@ -14,9 +15,17 @@ function notify_preexec {
 
 function notify_precmd {
 	cmd=`echo $notif_prev_command | awk '{print $1}'`
-	if [[ $cmd =~ ^(go|uvicorn|gatsby)$ ]]; then
-		return
-	fi
+    subcmd=`echo $notif_prev_command | awk '{print $2}'`
+
+    # Define blacklist
+    if [ "$cmd" = 'uvicorn' ] \
+        || ( [ "$cmd" = 'go' ] && [ "$subcmd" = 'run' ] ) \
+        || ( [ "$cmd" = 'gatsby' ] && [ "$subcmd" = 'develop' ] ) \
+        || ( [ "$cmd" = 'flutter' ] && [ "$subcmd" = 'run' ] ) \
+        || ( [ "$cmd" = 'npm' ] && [ "$subcmd" = 'start' ] ) \
+        || ( [ "$cmd" = 'yarn' ] && [ "$subcmd" = 'start' ] ); then
+        return
+    fi
 
   notif_status=$?
   if [ -n "${CMD_NOTIFY_SLACK_WEBHOOK_URL+x}" ]\
